@@ -69,20 +69,32 @@ a {
 }
 
 /* Game.js Background */
+
 .backgroundColorR {
-  background-image: url("./assets/backgrounds/bgR.png");
+  /* background-image: url("./assets/backgrounds/bgR.png"); */
 }
 
 .backgroundColorG {
-  background-image: url("./assets/backgrounds/bgG.png");
+  filter: hue-rotate(125deg);
+  /* background-image: url("./assets/backgrounds/bgG.png"); */
 }
 
 .backgroundColorB {
-  background-image: url("./assets/backgrounds/bgB.png");
+  filter: hue-rotate(-140deg);
+  /* background-image: url("./assets/backgrounds/bgB.png"); */
 }
 
 .backgroundColorY {
-  background-image: url("./assets/backgrounds/bgY.png");
+  filter: hue-rotate(66deg);
+  /* background-image: url("./assets/backgrounds/bgY.png"); */
+}
+.background {
+  background-image: url("./assets/backgrounds/bg.jpg");
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  filter: brightness(0.4) ;
+  z-index: -1;
 }
 
 /* UNO Cards */

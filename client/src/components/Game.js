@@ -16,6 +16,9 @@ import wildCardSound from '../assets/sounds/wild-sound.mp3'
 import draw4CardSound from '../assets/sounds/draw4-sound.mp3'
 import gameOverSound from '../assets/sounds/game-over-sound.mp3'
 
+import Button from '@mui/material/Button';
+
+
 //NUMBER CODES FOR ACTION CARDS
 //SKIP - 404
 //DRAW 2 - 252
@@ -1217,7 +1220,8 @@ const Game = (props) => {
     }
     
     return (
-        <div className={`Game backgroundColorR backgroundColor${currentColor}`}>
+        <div className={`Game`}>
+            <div className={`background backgroundColorR backgroundColor${currentColor}`}></div>
             {(!roomFull) ? <>
 
                 <div className='topInfo'>
@@ -1368,6 +1372,7 @@ const Game = (props) => {
                                                 return <div className="msg-receive">{msg.text}</div>
                                             if(msg.user === 'Player 2')
                                                 return <div className="msg-send">{msg.text}</div>
+                                            return false
                                         })}
                                     </div>
                                     <div className="chat-text">
@@ -1381,7 +1386,7 @@ const Game = (props) => {
             </> : <h1>Room full</h1> }
 
             <br />
-            <a href='/'><button className="game-button red">QUIT</button></a>
+            <a href='/'><Button variant="contained" className="btn">Quit</Button></a>
         </div>
     )
 }
