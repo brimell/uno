@@ -16,10 +16,10 @@ app.use(cors())
 io.on('connection', socket => {
     socket.on('join', (payload, callback) => {
         let numberOfUsersInRoom = getUsersInRoom(payload.room).length
-
+        console.log('new user: '+socket.id)
         const { error, newUser} = addUser({
             id: socket.id,
-            name: numberOfUsersInRoom===0 ? 'Player 1' : 'Player 2',
+            name: numberOfUsersInRoom === 0 ? 'Player 1' : 'Player 2',
             room: payload.room
         })
 

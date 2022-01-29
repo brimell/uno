@@ -43,7 +43,7 @@ const Game = (props) => {
         const connectionOptions =  {
             "forceNew" : true,
             "reconnectionAttempts": "Infinity", 
-            "timeout" : 10000,                  
+            "timeout" : 10000,
             "transports" : ["websocket"]
         }
         socket = io.connect(ENDPOINT, connectionOptions)
@@ -59,7 +59,7 @@ const Game = (props) => {
             //shut down connnection instance
             socket.off()
         }
-    }, [])
+    }, [room])
 
     //initialize game state
     const [gameOver, setGameOver] = useState(true)
@@ -1330,7 +1330,7 @@ const Game = (props) => {
                         </div>
                         <br />
                         <div className='middleInfo' style={turn === 'Player 1' ? {pointerEvents: 'none'} : null}>
-                            <button className='game-button' disabled={turn !== 'Player 2'} onClick={onCardDrawnHandler}>DRAW CARD</button>
+                            <Button className='game-button' varient="contained" disabled={turn !== 'Player 2'} onClick={onCardDrawnHandler}>Draw Card</Button>
                             {playedCardsPile && playedCardsPile.length>0 &&
                             <img
                                 className='Card'
