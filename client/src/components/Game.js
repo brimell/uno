@@ -26,8 +26,8 @@ import Button from '@mui/material/Button';
 //DRAW 4 WILD - 600
 
 let socket
-// const ENDPOINT = 'http://localhost:5000'
-const ENDPOINT = 'https://exuno.herokuapp.com/'
+const ENDPOINT = 'http://localhost:5000'
+// const ENDPOINT = 'https://exuno.herokuapp.com/'
 
 const Game = (props) => {
     const data = queryString.parse(props.location.search)
@@ -39,6 +39,7 @@ const Game = (props) => {
     const [currentUser, setCurrentUser] = useState('')
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
+    const sessionName = sessionStorage.getItem('name')
 
     useEffect(() => {
         const connectionOptions =  {
@@ -49,7 +50,7 @@ const Game = (props) => {
         }
         socket = io.connect(ENDPOINT, connectionOptions)
 
-        socket.emit('join', {room: room}, (error) => {
+        socket.emit('join', {room: room, name: sessionName}, (error) => {
             if(error)
                 setRoomFull(true)
         })
@@ -60,7 +61,7 @@ const Game = (props) => {
             //shut down connnection instance
             socket.off()
         }
-    }, [room])
+    }, [room, sessionName])
 
     //initialize game state
     const [gameOver, setGameOver] = useState(true)
@@ -1225,7 +1226,9 @@ const Game = (props) => {
             {(!roomFull) ? <>
 
                 <div className='topInfo'>
-                    <img src={require('../assets/logo.png').default} alt='' />
+                    <img src={require('../assets/logo.png').default} onClick={ () => {
+                        window.location.pathname = ''
+                        }} alt='' />
                     <h1>Game Code: {room}</h1>
                     <span>
                         <button className='game-button green' onClick={() => setSoundMuted(!isSoundMuted)}>{isSoundMuted ? <span className="material-icons">volume_off</span> : <span className="material-icons">volume_up</span>}</button>
@@ -1240,15 +1243,14 @@ const Game = (props) => {
                 </div>
 
                 {/* PLAYER LEFT MESSAGES */}
-                {users.length===1 && currentUser === 'Player 2' && <h1 className='topInfoText'>Player 1 has left the game.</h1> }
-                {users.length===1 && currentUser === 'Player 1' && <h1 className='topInfoText'>Waiting for Player 2 to join the game...</h1> }
+                {users.length===1 && <h1 className='topInfoText'>Waiting for a second player to join...</h1> }
 
                 {users.length===2 && <>
 
                     {gameOver ? <div>{winner !== '' && <><h1>Game Over</h1><h2>{winner} wins!</h2></>}</div> :
                     <div>
                         {/* PLAYER 1 VIEW */}
-                        {currentUser === 'Player 1' && <>    
+                        {currentUser[0] === 'p1' && <>    
                         <div className='player2Deck' style={{pointerEvents: 'none'}}>
                             <p className='playerDeckText'>Player 2</p>
                             {player2Deck.map((item, i) => (
@@ -1278,7 +1280,7 @@ const Game = (props) => {
                         </div>
                         <br />
                         <div className='player1Deck' style={turn === 'Player 1' ? null : {pointerEvents: 'none'}}>
-                            <p className='playerDeckText'>Player 1</p>
+                            <p className='playerDeckText'>{currentUser[1]}</p>
                             {player1Deck.map((item, i) => (
                                 <img
                                     key={i}
@@ -1315,9 +1317,9 @@ const Game = (props) => {
                         </div> </> }
 
                         {/* PLAYER 2 VIEW */}
-                        {currentUser === 'Player 2' && <>
+                        {currentUser[0] === 'p2' && <>
                         <div className='player1Deck' style={{pointerEvents: 'none'}}>
-                            <p className='playerDeckText'>Player 1</p>
+                            <p className='playerDeckText'>{currentUser[1]}</p>
                             {player1Deck.map((item, i) => (
                                 <img
                                     key={i}
@@ -1345,7 +1347,7 @@ const Game = (props) => {
                         </div>
                         <br />
                         <div className='player2Deck' style={turn === 'Player 1' ? {pointerEvents: 'none'} : null}>
-                            <p className='playerDeckText'>Player 2</p>
+                            <p className='playerDeckText'>{currentUser[1]}</p>
                             {player2Deck.map((item, i) => (
                                 <img
                                     key={i}

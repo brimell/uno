@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
@@ -8,7 +8,11 @@ import randomCodeGenerator from '../utils/randomCodeGenerator'
 
 const Homepage = () => {
     const [roomCode, setRoomCode] = useState('')
-    const [name, setName] = useState(null)
+    const [name, setName] = useState('')
+
+    useEffect(() => {
+        sessionStorage.setItem('name', name)
+    })
 
     return (
         <div className='Homepage'>
@@ -41,7 +45,7 @@ const Homepage = () => {
                     <div className='homepage-create'>
                         <Button variant="contained" onClick={() => {
                             if (name.length > 3) {
-                                window.href = `/play?roomCode=${randomCodeGenerator(5)}`
+                                window.location.replace(`/play?roomCode=${randomCodeGenerator(5)}`)
                             } else {
                                 alert('Please enter a name longer than 3 characters')
                             }
