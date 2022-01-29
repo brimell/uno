@@ -32,7 +32,7 @@ const Homepage = () => {
                         <Button onClick={() => {
                             if (name.length > 3) {
                                 if (roomCode) {
-                                window.href = `/play?roomCode=${roomCode}`
+                                window.location.replace(`/play?roomCode=${roomCode}`)
                                 } else {
                                     alert('Please enter a game code')
                                 }
