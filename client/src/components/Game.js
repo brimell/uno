@@ -39,7 +39,7 @@ const Game = (props) => {
     const [currentUser, setCurrentUser] = useState('')
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
-    const sessionName = sessionStorage.getItem('name')
+    const [sessionName, setSessionName] = useState(sessionStorage.getItem('name') || 'Player')
 
     useEffect(() => {
         const connectionOptions =  {
@@ -1319,7 +1319,7 @@ const Game = (props) => {
                         {/* PLAYER 2 VIEW */}
                         {currentUser[0] === 'p2' && <>
                         <div className='player1Deck' style={{pointerEvents: 'none'}}>
-                            <p className='playerDeckText'>{currentUser[1]}</p>
+                            <p className='playerDeckText'>Player 1</p>
                             {player1Deck.map((item, i) => (
                                 <img
                                     key={i}
