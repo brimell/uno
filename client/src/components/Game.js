@@ -67,7 +67,7 @@ const Game = (props) => {
     const [turn, setTurn] = useState('')
     const [player1Deck, setPlayer1Deck] = useState([])
     const [player2Deck, setPlayer2Deck] = useState([])
-    const [currentColor, setCurrentColor] = useState('')
+    const [currentColor, setCurrentColor] = useState(false)
     const [currentNumber, setCurrentNumber] = useState('')
     const [playedCardsPile, setPlayedCardsPile] = useState([])
     const [drawCardPile, setDrawCardPile] = useState([])
@@ -1218,10 +1218,9 @@ const Game = (props) => {
             }
         }
     }
-    
     return (
         <div className={`Game`}>
-            <div className={`background backgroundColorR backgroundColor${currentColor}`}></div>
+            <div className={`background backgroundColor${currentColor}`}></div>
             {(!roomFull) ? <>
 
                 <div className='topInfo'>
@@ -1241,11 +1240,11 @@ const Game = (props) => {
 
                 {/* PLAYER LEFT MESSAGES */}
                 {users.length===1 && currentUser === 'Player 2' && <h1 className='topInfoText'>Player 1 has left the game.</h1> }
-                {users.length===1 && currentUser === 'Player 1' && <h1 className='topInfoText'>Waiting for Player 2 to join the game.</h1> }
+                {users.length===1 && currentUser === 'Player 1' && <h1 className='topInfoText'>Waiting for Player 2 to join the game...</h1> }
 
                 {users.length===2 && <>
 
-                    {gameOver ? <div>{winner !== '' && <><h1>GAME OVER</h1><h2>{winner} wins!</h2></>}</div> :
+                    {gameOver ? <div>{winner !== '' && <><h1>Game Over</h1><h2>{winner} wins!</h2></>}</div> :
                     <div>
                         {/* PLAYER 1 VIEW */}
                         {currentUser === 'Player 1' && <>    
