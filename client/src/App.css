@@ -75,24 +75,21 @@ a {
 }
 
 /* Game.js Background */
-.backgroundColorR {
-  /* background-color: #470101; */
+
+/* .backgroundColorR {
 
 }
 .backgroundColorG {
-  /* background-color: #003f00; */
-  /* filter: hue-rotate(125deg); */
+  filter: hue-rotate(125deg);
 }
 
 .backgroundColorB {
-  /* background-color: #01013a; */
-  /* filter: hue-rotate(-140deg); */
+  filter: hue-rotate(-140deg);
 }
 
 .backgroundColorY {
-  /* background-color: #414603; */
-  /* filter: hue-rotate(66deg); */
-}
+  filter: hue-rotate(66deg);
+} */
 
 .background {
   /* background-image: url("./assets/backgrounds/bg.jpg"); */
