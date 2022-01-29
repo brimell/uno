@@ -32,7 +32,7 @@ a {
 }
 
 .homepage-form > h1 {
-  margin: 30px;
+  margin: 50px;
 }
 
 .homepage-join {
@@ -61,6 +61,12 @@ a {
   margin-bottom: 40px;
 }
 
+.homepage-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 /* Game.js parent div */
 .Game {
   background-size: cover;
@@ -486,4 +492,18 @@ a {
 
 .MuiInput-root:before {
   border-bottom: 1px solid rgba(255, 255, 255, 0.521) !important;
+}
+
+.MuiInputLabel-filled {
+  color: rgba(255, 255, 255, 0.322) !important;
+}
+
+.MuiFilledInput-root {
+  color: white !important;
+  background-color: rgb(255 255 255 / 9%) !important;
+}
+
+.MuiFilledInput-root:before {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.521) !important;
+
 }
